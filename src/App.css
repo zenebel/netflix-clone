@@ -1,0 +1,20 @@
+/* Ensure body takes full height and dark background */
+body {
+  background-color: #111;
+  color: white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* App wrapper styling */
+.app {
+  padding-top: 60px; /* Push content below fixed navbar */
+}
+
+/* Section spacing */
+.categories-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Adds space between each row */
+}

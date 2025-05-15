@@ -1,0 +1,62 @@
+/* Container styling */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+/* Logo styling */
+.nav__logo {
+  width: 80px;
+}
+
+/* Navigation links list styling */
+.nav__links {
+  display: flex;
+  gap: 20px;
+  list-style:none; /* Removes default bullet points */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+}
+
+.nav__links li {
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s, transform 0.2s; /* Smooth transition */
+}
+
+.nav__links li:hover {
+  color: #e50914;           /* Netflix Red */
+  transform: scale(1.05);   /* Slight enlarge effect */
+}
+
+/* Icons styling */
+.nav__icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 40px;
+}
+
+.nav__icons svg {
+  transition: transform 0.2s, color 0.2s; /* Smooth transition */
+}
+
+.nav__icons svg:hover {
+  transform: scale(1.2); /* Slightly enlarge on hover */
+  color: #e50914; /* Netflix red on hover */
+}
+
+.nav__avatar {
+  width: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+}
