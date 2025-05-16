@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../utils/axios"; // Correct relative path
+import axios from "../../utils/axios"; //relative path
 import requests from "../../utils/request";
-// Correct relative path
+// relative path
 
-import "./Banner.css"; //  Your existing CSS
+import "./Banner.css"; // existing CSS
 
 function Banner() {
   const [movie, setMovie] = useState([]);

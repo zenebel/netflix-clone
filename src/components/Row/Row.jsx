@@ -1,20 +1,40 @@
 // Import required hooks and utilities
 import React, { useEffect, useState } from "react";
-import axios from "../../utils/axios";  // Axios instance
+import axios from "../../utils/axios"; // Axios instance
 import "./Row.css"; // Row styling
+import movieTrailer from "movie-trailer";
+import YouTube from "react-youtube";
 
 function Row({ title, fetchUrl }) {
-  // Local state to store fetched movies
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]); // Store fetched movies
+  const [trailerUrl, setTrailerUrl] = useState(""); // Store trailer ID
 
-  // Fetch movies when the component mounts or fetchUrl changes
+  const handleClick = (movie) => {
+    if (trailerUrl) {
+      setTrailerUrl(""); // Close trailer if already open
+    } else {
+      movieTrailer(movie?.name || "")
+        .then((url) => {
+          const urlParams = new URLSearchParams(new URL(url).search);
+          setTrailerUrl(urlParams.get("v")); // Extract YouTube video ID
+        })
+        .catch((error) => console.log(error));
+    }
+  };
+
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get(fetchUrl); // Make API call
-      setMovies(response.data.results); // Store the movie results
+      const response = await axios.get(fetchUrl);
+      setMovies(response.data.results);
     }
     fetchData();
-  }, [fetchUrl]); // Dependency array to refetch if fetchUrl changes
+  }, [fetchUrl]);
+
+  const opts = {
+    height: "390",
+    width: "100%",
+    playerVars: { autoplay: 1 },
+  };
 
   return (
     <div className="rowSection">
@@ -26,9 +46,11 @@ function Row({ title, fetchUrl }) {
             className="row__poster"
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title || movie.name}
+            onClick={() => handleClick(movie)}
           />
         ))}
       </div>
+      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </div>
   );
 }
