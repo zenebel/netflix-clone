@@ -1,25 +1,55 @@
-import React from "react";
-import "./Banner.css";
-import bannerImage from "../../assets/images/bgbanner.jpeg";
+import React, { useState, useEffect } from "react";
+import axios from "../../utils/axios"; // Correct relative path
+import requests from "../../utils/request";
+// Correct relative path
+
+import "./Banner.css"; //  Your existing CSS
 
 function Banner() {
+  const [movie, setMovie] = useState([]);
+
+  // Fetch a random movie when the component loads
+  useEffect(() => {
+    async function fetchData() {
+      const request = await axios.get(requests.fetchNetflixOriginals);
+      const randomMovie =
+        request.data.results[
+          Math.floor(Math.random() * request.data.results.length - 1)
+        ];
+      setMovie(randomMovie);
+    }
+    fetchData();
+  }, []);
+
+  // Helper to limit description length
+  const truncate = (str, n) =>
+    str?.length > n ? str.substr(0, n - 1) + "..." : str;
+
   return (
-    <header
+    <div
       className="banner"
-      style={{ backgroundImage: `url(${bannerImage})` }}
+      style={{
+        backgroundSize: "cover",
+        backgroundImage: `url("https://image.tmdb.org/t/p/original${movie?.backdrop_path}")`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <div className="banner__contents">
-        <h1 className="banner__title">Movie Title</h1>
-        <div className="banner__buttons">
-          <button className="banner__button">Play</button>
-          <button className="banner__button">My List</button>
+      <div className="banner-contents">
+        <h1 className="banner-title">
+          {movie?.title || movie?.name || movie?.original_name}
+        </h1>
+
+        <div className="banner-buttons">
+          <button className="banner-button play">Play</button>
+          <button className="banner-button">My List</button>
         </div>
-        <p className="banner__description">
-          This is a short description of the featured movie or TV show.
-        </p>
+
+        <h1 className="banner-description">{truncate(movie?.overview, 150)}</h1>
       </div>
-      <div className="banner__fadeBottom" />
-    </header>
+
+      <div className="banner-fadebottom" />
+    </div>
   );
 }
 
