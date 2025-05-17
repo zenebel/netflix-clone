@@ -64,7 +64,7 @@ npm install
 Run the development server
 npm start
 
-Open in your browser
+Open in browser
 http://localhost:3000
 
 Demo Preview
