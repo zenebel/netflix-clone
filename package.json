@@ -1,6 +1,7 @@
 {
   "name": "netflix-clone",
   "version": "0.1.0",
+  "homepage": "https://lydiazenebe.com/netflix-clone",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
