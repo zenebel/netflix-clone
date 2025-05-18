@@ -66,3 +66,15 @@
   right: 0;
   bottom: 0;
 }
+/* Play Button Styling */
+.banner__button--play {
+  background-color: #fff;
+  color: #000;
+}
+
+/* My List Button Styling */
+.banner__button--mylist {
+  background-color: rgba(51, 51, 51, 0.5);
+  color: #fff;
+  border: 1px solid #fff;
+}
