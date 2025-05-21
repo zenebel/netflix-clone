@@ -65,7 +65,7 @@ Run the development server
 npm start
 
 Open in browser
-http://localhost:3000
+https://lydiazenebe.com/netflix-clone/
 
 Demo Preview
 Add screenshots or screen recordings here if available.
